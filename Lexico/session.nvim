@@ -13,15 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 main.cpp
-badd +0 headers/Token.hpp
-badd +0 sources/Token.cpp
-badd +0 headers/Lexico.hpp
-badd +0 sources/Lexico.cpp
+badd +1 main.cpp
+badd +1 headers/Token.hpp
+badd +1 sources/Token.cpp
+badd +13 headers/Lexico.hpp
+badd +94 sources/Lexico.cpp
+badd +22 headers/SymbolTable.hpp
+badd +31 sources/SymbolTable.cpp
 argglobal
 %argdel
 $argadd main.cpp
 set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
@@ -99,12 +103,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 38 - ((17 * winheight(0) + 14) / 28)
+let s:l = 44 - ((27 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 38
-normal! 0
+keepjumps 44
+normal! 019|
 tabnext
 edit sources/Lexico.cpp
 argglobal
@@ -119,13 +123,53 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 64 - ((8 * winheight(0) + 14) / 28)
+let s:l = 93 - ((19 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 64
-normal! 031|
-tabnext 1
+keepjumps 93
+normal! 025|
+tabnext
+edit headers/SymbolTable.hpp
+argglobal
+balt sources/Lexico.cpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 14 - ((13 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 09|
+tabnext
+edit sources/SymbolTable.cpp
+argglobal
+balt headers/SymbolTable.hpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 31 - ((21 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 31
+normal! 019|
+tabnext 4
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -138,7 +182,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

@@ -1,6 +1,7 @@
 #include "Lexico.hpp"
 
-Lexico::Lexico(string _pathFileProgramaFonte)
+Lexico::Lexico(string _pathFileProgramaFonte, SymbolTable& _tabelaDeSimbolos)
+: tabelaDeSimbolos(_tabelaDeSimbolos)
 {
     pathFileProgramaFonte = _pathFileProgramaFonte;
     carregarPalavrasReservadas();
@@ -11,7 +12,6 @@ Lexico::Lexico(string _pathFileProgramaFonte)
 Lexico::~Lexico()
 {
     fileProgramaFonte.close();
-    tabelaDeSimbolos.clear();
 }
 
 void Lexico::carregarPalavrasReservadas()
@@ -22,33 +22,9 @@ void Lexico::carregarPalavrasReservadas()
     while (file >> palavraReservada)
     {
         Token tokenPalavraReservada(palavraReservada);
-        inserirTabelaSimbolos(tokenPalavraReservada);
+        tabelaDeSimbolos.inserir(tokenPalavraReservada);
     }
     file.close();
-}
-
-void Lexico::inserirTabelaSimbolos(Token token)
-{
-    tabelaDeSimbolos.insert(token);
-}
-
-void Lexico::atualizarTabelaSimbolos(Token token)
-{
-    excluirTabelaSimbolos(token.getLexema());
-    inserirTabelaSimbolos(token);
-}
-
-Token Lexico::pesquisarTabelaSimbolos(string lexema)
-{
-    auto tokenPtr = tabelaDeSimbolos.find(Token(lexema));
-    if (tokenPtr == tabelaDeSimbolos.end())
-        return Token();
-    return *tokenPtr;
-}
-
-void Lexico::excluirTabelaSimbolos(string lexema)
-{
-    tabelaDeSimbolos.erase(Token(lexema));
 }
 
 void Lexico::abrirProgramaFonte()
@@ -113,10 +89,10 @@ Token Lexico::SCANNER()
 
     if (!error){
         if (estadosFinais[estado] == "Id"){
-            token = pesquisarTabelaSimbolos(buffer);
+            token = tabelaDeSimbolos.pesquisar(buffer);
             if (token == Token()){
                 token = Token(estadosFinais[estado], buffer, tiposDosEstados[estado]);
-                inserirTabelaSimbolos(token);
+                tabelaDeSimbolos.inserir(token);
             }
         }
         else if (estadosFinais[estado] == "Comentario"){
@@ -176,12 +152,4 @@ void Lexico::carregarAutomato()
             mensagensErro[i] = descricao;
     }
     file.close();
-}
-
-void Lexico::imprimirTabelaSimbolos()
-{
-    cout << "TABELA DE SIMBOLOS\n";
-    for (Token token : tabelaDeSimbolos){
-        cout << token << "\n";
-    }
 }

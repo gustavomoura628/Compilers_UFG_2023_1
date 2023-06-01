@@ -10,22 +10,18 @@
 #include <vector>
 
 #include "Token.hpp"
+#include "SymbolTable.hpp"
 
 using namespace std;
 
 class Lexico
 {
     public:
-        Lexico(string _pathFileProgramaFonte);
+        Lexico(string _pathFileProgramaFonte, SymbolTable& _tabelaDeSimbolos);
         ~Lexico();
         Token SCANNER();
-        void imprimirTabelaSimbolos();
     private:
         void carregarPalavrasReservadas();
-        void inserirTabelaSimbolos(Token token);
-        void atualizarTabelaSimbolos(Token token);
-        Token pesquisarTabelaSimbolos(string lexema);
-        void excluirTabelaSimbolos(string lexema);
         void abrirProgramaFonte();
         void readNextCaracter();
         void carregarAutomato();
@@ -35,7 +31,7 @@ class Lexico
         string pathFileAutomato = "Info/AutomatoLexico.txt";
         string pathFileProgramaFonte;
 
-        set<Token> tabelaDeSimbolos;
+        SymbolTable & tabelaDeSimbolos;
         map<char, int> idxOfCaracter;
         vector<vector<int>> transicoesAutomato;
         map<int, string> estadosFinais, mensagensErro, tiposDosEstados;
