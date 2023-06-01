@@ -97,7 +97,7 @@ Token Lexico::SCANNER()
             else{
                 desfazerLeitura();
                 cout << "ERRO LEXICO-> (Linha: " << linha << " Coluna: " << coluna << ") " << mensagensErro[estado] << "\n\t\t" << buffer << "\n\t\t^" << endl;
-                readNextCaracter();
+                if(estado == 0) readNextCaracter();
                 error = true;
                 break;
             }
