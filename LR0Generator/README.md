@@ -4,7 +4,7 @@ Write Grammar description in the format (1) A -> B + C
 ```bash
 ./generator grammar.txt > automata.xml
 ```  
-load xml file into draw.io  
+load automata.xml file into draw.io  
 Arrange -> Layout -> Custom  
 ```json
 [
