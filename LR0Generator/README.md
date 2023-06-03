@@ -31,4 +31,4 @@ Arrange -> Layout -> Custom
 (You could change interRankCellSpacing or any other attribute to get a more tailored result)  
   
 Done!  
-![Automata Example(automata_example.png)
+![Automata Example](automata_example.png)
