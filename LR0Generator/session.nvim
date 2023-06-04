@@ -14,15 +14,23 @@ else
   set shortmess=aoO
 endif
 badd +28 main.cpp
-badd +47 headers/LR0Generator.hpp
+badd +12 headers/LR0Generator.hpp
 badd +2 sources/LR0Generator.hpp
 badd +114 sources/LR0Generator.cpp
 badd +27 headers/XMLGenerator.hpp
 badd +96 sources/XMLGenerator.cpp
+badd +5 headers/Rule.hpp
+badd +1 sources/Rule.cpp
+badd +5 headers/State.hpp
+badd +1 sources/State.cpp
 argglobal
 %argdel
 $argadd main.cpp
 set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
@@ -47,6 +55,86 @@ normal! zt
 keepjumps 25
 normal! 05|
 tabnext
+edit headers/Rule.hpp
+argglobal
+balt headers/LR0Generator.hpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 29 - ((25 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 29
+normal! 0
+tabnext
+edit sources/Rule.cpp
+argglobal
+balt headers/Rule.hpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 56 - ((26 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 56
+normal! 0
+tabnext
+edit headers/State.hpp
+argglobal
+balt headers/LR0Generator.hpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 31 - ((8 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 31
+normal! 015|
+tabnext
+edit sources/State.cpp
+argglobal
+balt sources/LR0Generator.cpp
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 13) / 27)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 03|
+tabnext
 edit headers/LR0Generator.hpp
 argglobal
 balt main.cpp
@@ -60,12 +148,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 47 - ((14 * winheight(0) + 13) / 27)
+let s:l = 14 - ((8 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 47
-normal! 021|
+keepjumps 14
+normal! 020|
 tabnext
 edit sources/LR0Generator.cpp
 argglobal
@@ -80,12 +168,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 114 - ((18 * winheight(0) + 13) / 27)
+let s:l = 4 - ((3 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 114
-normal! 017|
+keepjumps 4
+normal! 0
 tabnext
 edit headers/XMLGenerator.hpp
 argglobal
@@ -100,12 +188,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 27 - ((22 * winheight(0) + 13) / 27)
+let s:l = 27 - ((21 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 27
-normal! 034|
+normal! 031|
 tabnext
 edit sources/XMLGenerator.cpp
 argglobal
@@ -126,7 +214,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 95
 normal! 033|
-tabnext 5
+tabnext 7
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
