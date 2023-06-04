@@ -54,3 +54,8 @@ bool Rule::isReduction()
 {
     return getDotElement() == "";
 }
+
+ostream& operator<<(ostream& os, const Rule& rule)
+{
+    return os << "(" << rule.number << ") " << rule.left << " -> " << rule.right;
+}

@@ -28,27 +28,7 @@ class State {
         vector<string> closed;
         vector<pair<string, int>> transitions;
 
-        friend ostream& operator<<(ostream& os, const State & state)
-        {
-            os << "State " << state.number << endl;
-            os << "Depth " << state.depth << endl;
-            os << "Rules: " << endl;
-            for(auto rule : state.rules)
-            {
-                os << rule << endl;
-            }
-            os << "Closures: " << endl;
-            for(auto closed : state.closed)
-            {
-                os << closed << endl;
-            }
-            os << "Transitions: " << endl;
-            for(auto transition : state.transitions)
-            {
-                   os << "(" << transition.first << "," << transition.second << ")" << endl;
-            }
-            return os;
-        }
+        friend ostream& operator<<(ostream& os, const State& state);
 };
 
 #endif

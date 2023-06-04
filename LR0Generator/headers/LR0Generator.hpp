@@ -29,14 +29,6 @@ class LR0Generator {
         vector<Rule> rules;
         vector<State> states;
 
-        friend ostream& operator<<(ostream& os, const LR0Generator & lr0generator)
-        {
-            os << "States:\n";
-            for(auto state : lr0generator.states)
-            {
-                os << state << endl;
-            }
-            return os;
-        }
+        friend ostream& operator<<(ostream& os, const LR0Generator& lr0generator);
 };
 #endif

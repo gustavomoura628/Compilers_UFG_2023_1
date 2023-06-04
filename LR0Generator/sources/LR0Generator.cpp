@@ -120,3 +120,12 @@ void LR0Generator::print_rules()
         cout << rule << endl;
     }
 }
+ostream& operator<<(ostream& os, const LR0Generator& lr0generator)
+{
+    os << "States:\n";
+    for(auto state : lr0generator.states)
+    {
+        os << state << endl;
+    }
+    return os;
+}

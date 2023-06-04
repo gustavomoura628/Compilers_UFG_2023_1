@@ -21,10 +21,7 @@ class Rule {
         bool isEqual(Rule otherRule);
         bool isReduction();
 
-        friend ostream& operator<<(ostream& os, const Rule & rule)
-        {
-            return os << "(" << rule.number << ") " << rule.left << " -> " << rule.right;
-        }
+        friend ostream& operator<<(ostream& os, const Rule& rule);
 };
 
 #endif
