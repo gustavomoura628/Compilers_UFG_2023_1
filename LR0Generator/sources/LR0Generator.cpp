@@ -76,21 +76,20 @@ void State::addRule(Rule rule)
         reduce_rule = rule.number;
     }
 }
-void State::addClosure(string Element)
+void State::addClosure(string element)
 {
-    closed.push_back(Element);
+    closed.push_back(element);
 }
-void State::addTransition(string Element, int state)
+void State::addTransition(string element, int state)
 {
-     transitions[Element] = state;
-     transitions_order.push_back(Element);
+     transitions.push_back(make_pair(element, state));
 
 }
-bool State::isClosed(string Element)
+bool State::isClosed(string element)
 {
     for(auto closed_element : closed)
     {
-        if(closed_element == Element) return true;
+        if(closed_element == element) return true;
     }
     return false;
 }

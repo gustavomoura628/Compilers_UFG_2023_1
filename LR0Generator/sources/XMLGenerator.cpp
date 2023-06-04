@@ -124,10 +124,10 @@ int XMLGenerator::recursive_draw(State state, int x, int y, bool title_only, int
         if(state.transitions.size() == 0) y = new_y;
     }
     //TRANSITIONS ORDER BY INSERTION
-    for(string element : state.transitions_order)
+    for( auto transition : state.transitions)
     {
-        int next_state = state.transitions.at(element);
-        pair<string, int> transition(element,next_state);
+    //    int next_state = state.transitions.at(element);
+    //    pair<string, int> transition(element,next_state);
     //}
     ////TRANSITIONS ORDER BY VALUE
     //for(int i=0; i<lr0generator.states.size(); i++)//Disgusting hack to get the correct order (map ordered by value)

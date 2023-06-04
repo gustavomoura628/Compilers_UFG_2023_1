@@ -40,9 +40,9 @@ class State {
         ~State();
 
         void addRule(Rule rule);
-        void addClosure(string Element);
-        void addTransition(string Element, int state);
-        bool isClosed(string Element);
+        void addClosure(string element);
+        void addTransition(string element, int state);
+        bool isClosed(string element);
         bool isEqual(State& otherState);
         bool reduce();
 
@@ -51,8 +51,7 @@ class State {
         int number;
         vector<Rule> rules;
         vector<string> closed;
-        vector<string> transitions_order; //TODO????? maybe its fine already?
-        map<string, int> transitions;
+        vector<pair<string, int>> transitions;
 
         friend ostream& operator<<(ostream& os, const State & state)
         {
@@ -70,10 +69,9 @@ class State {
             }
             os << "Transitions: " << endl;
             //ORDER BY INSERTION
-            for(string element : state.transitions_order)
+            for(auto transition : state.transitions)
             {
-                int next_state = state.transitions.at(element);
-                       os << "(" << element << "," << next_state << ")" << endl;
+                   os << "(" << transition.first << "," << transition.second << ")" << endl;
             }
             //ORDER BY VALUE
             //int max_transition = 0;
