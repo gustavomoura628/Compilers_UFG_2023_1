@@ -62,6 +62,7 @@ State::State()
 State::State(int _number)
 {
     number = _number;
+    reduce_rule = -1;
 }
 
 State::~State()
@@ -70,6 +71,10 @@ State::~State()
 void State::addRule(Rule rule)
 {
     rules.push_back(rule);
+    if(rule.isReduction())
+    {
+        reduce_rule = rule.number;
+    }
 }
 void State::addClosure(string Element)
 {
@@ -109,11 +114,7 @@ bool State::isEqual(State& otherState)
 }
 bool State::reduce()
 {
-    for(auto rule : rules)
-    {
-        if(rule.getDotElement() == "") return true;
-    }
-    return false;
+    return reduce_rule > -1;
 }
 
 LR0Generator::LR0Generator()

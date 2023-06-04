@@ -46,6 +46,7 @@ class State {
         bool isEqual(State& otherState);
         bool reduce();
 
+        int reduce_rule;
         int depth;
         int number;
         vector<Rule> rules;
