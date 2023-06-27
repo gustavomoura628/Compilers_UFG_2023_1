@@ -1,4 +1,4 @@
-# LR(0) Automata Generator  
+# SLR(0) Table Generator  
 How to use:  
 Write Grammar description in a text file with the format:  
 ```
@@ -9,30 +9,17 @@ Write Grammar description in a text file with the format:
 5 L -> L , S  
 ```
 ```bash
-./generator grammar.txt > automata.xml
+./generator grammar.txt
 ```  
+Output: multiples files used in the parser:  
   
-load automata.xml into draw.io  
-Arrange -> Layout -> Custom  
-```json
-[
-  {
-    "layout": "mxHierarchicalLayout",
-    "config": {
-      "orientation": "west",
-      "intraCellSpacing": 30,
-      "interRankCellSpacing": 100,
-      "interHierarchySpacing": 60,
-      "parallelEdgeSpacing": 10
-    }
-  }
-]
-```
-(You could change interRankCellSpacing or any other attribute to get a more tailored result)  
-  
-Done!  
-![Automata Example](automata_example.png)  
-  
-  
-Issues:
-    Currently has no support for ε (empty string)
+action.txt  
+goto.txt  
+follow.txt  
+terminalList.txt  
+naoTerminalList.txt  
+qtd.txt  
+rule_size.txt  
+
+Issues:  
+    Currently has no support for ε (empty string)  
