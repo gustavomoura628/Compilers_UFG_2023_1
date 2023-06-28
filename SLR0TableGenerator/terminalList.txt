@@ -1,4 +1,4 @@
-$
+EOF
 ab_p
 então
 escreva

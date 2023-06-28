@@ -141,7 +141,7 @@ void LR0Generator::calculate_non_terminal()
 
 void LR0Generator::calculate_terminal()
 {
-    terminal.insert("$");
+    terminal.insert("EOF");
 
     for(auto rule : rules)
     {
@@ -200,7 +200,7 @@ void LR0Generator::calculate_first()
 
 void LR0Generator::calculate_follow()
 {
-    follow[rules[0].left].insert("$");
+    follow[rules[0].left].insert("EOF");
 
     for(auto rule : rules)
     {
@@ -267,7 +267,7 @@ void LR0Generator::calculate_slrtable()
 
              if(r.number == 1)
              {
-                 SLRTABLE[state.number]["$"] = "A 0";
+                 SLRTABLE[state.number]["EOF"] = "A 0";
              }
          }
 
